@@ -45,5 +45,6 @@ module.exports = {
       pragma: "React",
       version: "16.13.1",
     },
+    "import/resolver": "webpack",
   },
 };
