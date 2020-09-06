@@ -33,6 +33,7 @@ module.exports = {
     "react/jsx-filename-extension": [1, { extensions: [".tsx", ".jsx"] }],
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-props-no-spreading": "off",
+    "react/jsx-curly-newline": "off",
     "import/prefer-default-export": "off",
     "import/extensions": "off",
     indent: "off",
