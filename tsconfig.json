@@ -29,8 +29,12 @@
   "exclude": [
     "node_modules"
   ],
+  "files": [
+    "./types/index.d.ts"
+  ],
   "include": [
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "**/*.gql"
   ]
 }

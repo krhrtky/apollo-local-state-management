@@ -1,10 +1,10 @@
-/**
- * @type import('webpack').Configuration
- */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { resolve } = require('path');
 
+/**
+ * @type import('webpack').Configuration
+ */
 module.exports = (env, argv) => {
   const mode = argv.mode;
   const isProduction = mode === 'production';
@@ -18,6 +18,11 @@ module.exports = (env, argv) => {
     },
     module: {
       rules: [
+        {
+          test: /\.(graphql|gql)$/,
+          exclude: /node_modules/,
+          loader: "graphql-tag/loader",
+        },
         {
           test: /\.tsx?$/,
           use: 'ts-loader',

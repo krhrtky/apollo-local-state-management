@@ -1,0 +1,25 @@
+#schema {
+#    query: Query
+#    mutation: Mutation
+#}
+
+type Query {
+    logedIn: Boolean
+    user: User
+}
+
+type Mutation {
+    logIn(input: logInInput!): User
+
+}
+
+type User {
+    id: ID!
+    name: String!
+    email: String!
+}
+
+input logInInput {
+    email: String!
+    password: String!
+}
