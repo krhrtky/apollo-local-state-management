@@ -1,7 +1,7 @@
 import React from "react";
 import { AuthenticationImpl, CheckAuthorizedImpl } from "@/useCases";
 
-export const App = () => {
+export const Root = () => {
   const authentication = AuthenticationImpl();
   const authorized = CheckAuthorizedImpl().handle();
 

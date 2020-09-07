@@ -1,6 +1,8 @@
-import React from "react";
 import { render } from "react-dom";
-import { App } from "@/App";
+import { renderRoutes } from "react-router-config";
 import { withProviders } from "./Provider";
+import { routes } from "./pages";
 
-render(withProviders(<App />), document.getElementById("app"));
+const App = withProviders(renderRoutes(routes));
+
+render(App, document.getElementById("app"));
