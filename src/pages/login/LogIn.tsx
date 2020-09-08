@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers";
 import { string, object } from "yup";
 import { RouteConfigComponentProps } from "react-router-config";
+import { AuthenticationImpl } from "@/useCases";
 
 type FormValues = Readonly<{
   email: string;
@@ -17,12 +18,19 @@ const schema = object<FormValues>({
 type Props = {} & RouteConfigComponentProps;
 
 export const LogIn: React.FC<Props> = () => {
-  const { register, errors, handleSubmit: onSubmit } = useForm<FormValues>({
+  const { register, errors, handleSubmit } = useForm<FormValues>({
     resolver: yupResolver(schema),
+  });
+  const authentication = AuthenticationImpl();
+  const onSubmit = handleSubmit(({ email, password }) => {
+    authentication.handle({
+      email,
+      password,
+    });
   });
 
   return (
-    <form onSubmit={onSubmit(d => console.log(d))}>
+    <form onSubmit={onSubmit}>
       <div>
         <label htmlFor="email">
           email:
