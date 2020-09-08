@@ -1,3 +1,4 @@
 dist
 .idea/*
 **/__generated__/**
+/tsconfig.tsbuildinfo
