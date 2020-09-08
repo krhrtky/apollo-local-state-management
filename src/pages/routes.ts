@@ -1,16 +1,18 @@
 import { RouteConfig } from "react-router-config";
 import { App } from "./App";
-import { Root } from "./Root";
+import { Home } from "./Home";
+import { loginRoutes } from "./login";
 
-export const routes: Array<RouteConfig> = [
+export const Routes: Array<RouteConfig> = [
   {
     component: App,
     routes: [
       {
         path: "/",
         exact: true,
-        component: Root,
+        component: Home,
       },
+      ...loginRoutes,
     ],
   },
 ];

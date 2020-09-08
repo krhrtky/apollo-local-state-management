@@ -1,9 +1,11 @@
 import React from "react";
 import { AuthenticationImpl, CheckAuthorizedImpl } from "@/useCases";
+import { useHistory } from "react-router-dom";
 
-export const Root = () => {
+export const Home = () => {
   const authentication = AuthenticationImpl();
   const authorized = CheckAuthorizedImpl().handle();
+  const history = useHistory();
 
   return (
     <>
@@ -17,6 +19,9 @@ export const Root = () => {
           })
         }
       >
+        push state
+      </button>
+      <button type="button" onClick={() => history.push("/logIn")}>
         login
       </button>
     </>

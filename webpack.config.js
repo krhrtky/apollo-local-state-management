@@ -39,6 +39,7 @@ module.exports = (env, argv) => {
       new HtmlWebpackPlugin({
         template: './index.html',
         title: "Webpack App",
+        base: "/",
       }),
         new CleanWebpackPlugin({
         cleanAfterEveryBuildPatterns: ['dist'],
