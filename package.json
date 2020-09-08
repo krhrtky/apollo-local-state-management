@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --host 0.0.0.0 --history-api-fallback --inline --content-base",
-    "build:gql": "apollo client:codegen --target=typescript --useReadOnlyTypes",
+    "build:gql": "apollo client:codegen --target=typescript --useReadOnlyTypes --globalTypesFile=./types/__generated__/globalTypes.d.ts",
     "lint:js": "tsc --noEmit --incremental && eslint -c .eslintrc.js --ext .js,.jsx,.ts,.tsx ./src"
   },
   "dependencies": {
