@@ -25,7 +25,12 @@ module.exports = {
     semi: ["error", "always"],
     "prettier/prettier": [
       "error",
-      { semi: true, trailingComma: "all", arrowParens: "avoid" },
+      {
+        semi: true,
+        trailingComma: "all",
+        arrowParens: "avoid",
+        parser: "typescript",
+      },
     ],
     "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
     "@typescript-eslint/explicit-function-return-type": ["off"],

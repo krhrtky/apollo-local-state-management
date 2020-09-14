@@ -1,0 +1,11 @@
+query InitailState {
+    user {
+        id
+        name
+        email
+        password
+    }
+    todos {
+        id
+    }
+}

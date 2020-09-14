@@ -4,22 +4,45 @@ schema {
 }
 
 type Query {
-    logedIn: Boolean
-    user: User
+    user: User!
+    todos: [Todo!]!
+    todo(input: ID!): MabyTodo!
 }
 
-type Mutation {
-    logIn(input: logInInput!): User
+type Mutation
 
+scalar Date
+
+enum Priority {
+    HIGH
+    MIDDLE
+    LOW
 }
+
+type NotFound
 
 type User {
     id: ID!
     name: String!
     email: String!
+    password: String!
 }
 
-input logInInput {
-    email: String!
-    password: String!
+union MabyTodo = NotFound | Todo
+
+type Todo {
+    id: ID!
+    title: String!
+    description: String!
+    priority: Priority!
+    createdAt: Date!
+    updatedAt: Date!
+    user: User!
+}
+
+input NewTodo {
+    title: String!
+    description: String!
+    priority: Priority!
+    userId: String!
 }

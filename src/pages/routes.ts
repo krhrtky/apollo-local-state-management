@@ -1,7 +1,7 @@
 import { RouteConfig } from "react-router-config";
 import { App } from "./App";
 import { Home } from "./Home";
-import { loginRoutes } from "./login";
+import { Routes as Todos } from "./todos";
 
 export const Routes: Array<RouteConfig> = [
   {
@@ -12,7 +12,7 @@ export const Routes: Array<RouteConfig> = [
         exact: true,
         component: Home,
       },
-      ...loginRoutes,
+      ...Todos,
     ],
   },
 ];

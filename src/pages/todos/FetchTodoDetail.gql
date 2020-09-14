@@ -1,0 +1,14 @@
+query FetchTodoDetail($input: ID!) {
+    todo(input: $input) {
+        ...on Todo {
+            __typename
+            id
+            title
+            description
+            priority
+        }
+        ... on NotFound {
+            __typename
+        }
+    }
+}

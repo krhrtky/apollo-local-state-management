@@ -1,0 +1,12 @@
+
+query FetchTodos {
+    todos {
+        __typename
+        id
+        title
+        description
+        priority
+        createdAt
+        updatedAt
+    }
+}
