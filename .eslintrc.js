@@ -41,9 +41,11 @@ module.exports = {
     "react/jsx-curly-newline": "off",
     "import/prefer-default-export": "off",
     "import/extensions": "off",
+    "jsx-a11y/anchor-is-valid": "off",
     indent: "off",
     "implicit-arrow-linebreak": "off",
     "arrow-parens": ["error", "as-needed"],
+    "object-curly-newline": "off",
   },
   settings: {
     react: {

@@ -1,18 +1,22 @@
 import { RouteConfig } from "react-router-config";
 import { App } from "./App";
 import { Home } from "./Home";
-import { Routes as Todos } from "./todos";
+import { Routes as TodosRoutes } from "./todos";
+
+const Path = {
+  Home: "/",
+} as const;
 
 export const Routes: Array<RouteConfig> = [
   {
     component: App,
     routes: [
       {
-        path: "/",
+        path: Path.Home,
         exact: true,
         component: Home,
       },
-      ...Todos,
+      ...TodosRoutes,
     ],
   },
 ];

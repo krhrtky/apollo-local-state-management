@@ -1,8 +1,12 @@
 import React from "react";
-import * as GraphQL from "@/external/GraphQL";
+import { GraphQL, Theme } from "@/external";
 import * as Route from "@/pages/Route";
 
-const Providers = [GraphQL.wrapWithProvider, Route.wrapWithRouter];
+const Providers = [
+  GraphQL.wrapWithProvider,
+  Theme.wrapWithProvider,
+  Route.wrapWithRouter,
+];
 
 export const withProviders = (children: React.ReactNode) => (
   <>

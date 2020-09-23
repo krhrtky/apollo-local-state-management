@@ -1,6 +1,15 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { Link, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+import {
+  Badge,
+  Box,
+  Button,
+  Divider,
+  Flex,
+  Heading,
+  Stack,
+} from "@chakra-ui/core";
 import fetchDetailQuery from "./FetchTodoDetail.gql";
 import {
   FetchTodoDetail,
@@ -20,6 +29,8 @@ export const Todo: React.FC = () => {
     },
   );
 
+  const history = useHistory();
+
   if (loading) {
     return <div>loading...</div>;
   }
@@ -30,12 +41,40 @@ export const Todo: React.FC = () => {
   }
 
   return (
-    <div>
-      <div>{data.todo.title}</div>
-      <div>{data.todo.description}</div>
-      <div>{data.todo.priority}</div>
-      <Link to="/todos">List</Link>
-      <Link to="/todos/new">Create</Link>
-    </div>
+    <Box
+      borderWidth="1px"
+      rounded="lg"
+      width="inherit"
+      height="30%"
+      margin="0 30vw"
+    >
+      <Stack spacing={2}>
+        <Box marginX="10px">
+          <Badge variantColor="teal">{data.todo.priority}</Badge>
+        </Box>
+        <Box marginX="10px">
+          <Heading as="h3">{data.todo.title}</Heading>
+        </Box>
+        <Divider />
+        <Box marginX="10px">{data.todo.description}</Box>
+        <Divider />
+        <Flex justifyContent="space-around">
+          <Button
+            type="button"
+            variantColor="green"
+            onClick={() => history.push("/todos")}
+          >
+            List
+          </Button>
+          <Button
+            type="button"
+            variantColor="green"
+            onClick={() => history.push("/todos/new")}
+          >
+            Create
+          </Button>
+        </Flex>
+      </Stack>
+    </Box>
   );
 };

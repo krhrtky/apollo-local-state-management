@@ -5,13 +5,19 @@ import { yupResolver } from "@hookform/resolvers";
 import { string, object, mixed } from "yup";
 import { Priority, Priorities } from "@/entites/Todo";
 import { useApolloClient } from "@apollo/client";
-import {
-  FetchTodos,
-  // eslint-disable-next-line camelcase,@typescript-eslint/camelcase
-  FetchTodos_todos,
-} from "@/pages/todos/__generated__/FetchTodos";
+import { FetchTodos } from "@/pages/todos/__generated__/FetchTodos";
 import { Priority as PriorityEnum } from "@/external/GraphQL/__generated__/globalTypes";
 import { useHistory } from "react-router-dom";
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  Input,
+  Textarea,
+  Select,
+  Button,
+  Flex,
+} from "@chakra-ui/core";
 import query from "./FetchTodos.gql";
 
 type FormValues = Readonly<{
@@ -35,14 +41,11 @@ export const New: React.FC<Readonly<{}>> = () => {
   const client = useApolloClient();
 
   const onSubmit = handleSubmit(({ title, description, priority }) => {
-    const {
-      ROOT_QUERY: { todos },
-    } = client.extract() as {
-      ROOT_QUERY: {
-        // eslint-disable-next-line camelcase,@typescript-eslint/camelcase
-        todos: Array<FetchTodos_todos>;
-      };
-    };
+    const maybeTodos = client.readQuery<FetchTodos, void>({
+      query,
+    });
+    const todos = maybeTodos == null ? [] : maybeTodos.todos;
+
     const now = new Date().getTime();
 
     const newTodo = {
@@ -65,41 +68,42 @@ export const New: React.FC<Readonly<{}>> = () => {
   });
 
   return (
-    <form onSubmit={onSubmit}>
-      <div>
-        <label htmlFor="title">
-          <div>title</div>
-          <input id="title" name="title" type="text" ref={register} />
-        </label>
-        <p>{errors.title && errors.title.message}</p>
-      </div>
-      <div>
-        <label htmlFor="description">
-          <div>description</div>
-          <textarea
-            name="description"
-            id="description"
-            cols={30}
-            rows={3}
-            ref={register}
-          />
-        </label>
-        <p>{errors.description && errors.description.message}</p>
-      </div>
-      <div>
-        <label htmlFor="priority">
-          <div>priority</div>
-          <select name="priority" id="priority" ref={register}>
+    <form
+      onSubmit={onSubmit}
+      style={{ width: "inherit", height: "70%", margin: "0 30vw" }}
+    >
+      <Flex direction="column" justifyContent="space-around" height="inherit">
+        <FormControl isInvalid={errors.title != null}>
+          <FormLabel htmlFor="title">title</FormLabel>
+          <Input type="text" id="title" name="title" ref={register} />
+          {errors.title && (
+            <FormErrorMessage>errors.title.message</FormErrorMessage>
+          )}
+        </FormControl>
+        <FormControl isInvalid={errors.description != null}>
+          <FormLabel htmlFor="description">description</FormLabel>
+          <Textarea name="description" id="description" ref={register} />
+          {errors.description && (
+            <FormErrorMessage>{errors.description.message}</FormErrorMessage>
+          )}
+        </FormControl>
+        <FormControl isInvalid={errors.priority != null}>
+          <FormLabel htmlFor="priority">priority</FormLabel>
+          <Select name="priority" id="priority" ref={register}>
             {Priorities.map(priority => (
               <option key={priority} value={priority}>
                 {priority}
               </option>
             ))}
-          </select>
-        </label>
-        <p>{errors.priority && errors.priority.message}</p>
-      </div>
-      <button type="submit">register</button>
+          </Select>
+          {errors.priority && (
+            <FormErrorMessage>errors.priority.message</FormErrorMessage>
+          )}
+        </FormControl>
+        <Button variantColor="blue" type="submit">
+          register
+        </Button>
+      </Flex>
     </form>
   );
 };

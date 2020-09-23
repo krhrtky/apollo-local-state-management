@@ -4,19 +4,25 @@ import { New } from "./New";
 import { Todo } from "./Todo";
 import { NotFound } from "../NotFound";
 
+export const Path = {
+  Todos: "/todos",
+  New: "/todos/new",
+  Todo: "/todos/:id",
+} as const;
+
 export const Routes: Array<RouteConfig> = [
   {
-    path: "/todos",
+    path: Path.Todos,
     exact: true,
     component: Todos,
   },
   {
-    path: "/todos/new",
+    path: Path.New,
     exact: true,
     component: New,
   },
   {
-    path: "/todos/:id",
+    path: Path.Todo,
     exact: true,
     component: Todo,
   },
@@ -25,3 +31,5 @@ export const Routes: Array<RouteConfig> = [
     component: NotFound,
   },
 ];
+
+export const Links = Object.values(Path);

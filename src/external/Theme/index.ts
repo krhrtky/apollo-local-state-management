@@ -1,5 +1,5 @@
 import { wrapWithProvider } from "./Provider";
 
-export const GraphQL = {
+export const Theme = {
   wrapWithProvider,
 };
